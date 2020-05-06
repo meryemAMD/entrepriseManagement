@@ -26,8 +26,6 @@ node {
     // Run all the enclosed stages with access to the Salesforce
     // JWT key credentials.
     // -------------------------------------------------------------------------
-
- 	withEnv(["HOME=${env.WORKSPACE}"]) {	
 	
 	    withCredentials([file(credentialsId: SERVER_KEY_CREDENTIALS_ID, variable: 'server_key_file')]) {
 		// -------------------------------------------------------------------------
@@ -54,18 +52,9 @@ node {
 		}
 
 
-		// -------------------------------------------------------------------------
-		// Example shows how to run a check-only deploy.
-		// -------------------------------------------------------------------------
 
-		//stage('Check Only Deploy') {
-		//    rc = command "${toolbelt}/sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
-		//    if (rc != 0) {
-		//        error 'Salesforce deploy failed.'
-		//    }
-		//}
 	    }
-	}
+	
 }
 
 def command(script) {
