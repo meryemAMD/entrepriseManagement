@@ -35,7 +35,6 @@ node {
 		// -------------------------------------------------------------------------
 
 		stage('Authorize to Salesforce') {
-			lo = command "${toolbelt}/sfdx force:auth:logout --targetusername ${SF_USERNAME} -p"
 			rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile \"${server_key_file}\" --username ${SF_USERNAME} --setalias UAT"
 		    if (rc != 0) {
 			error 'Salesforce org authorization failed.'
